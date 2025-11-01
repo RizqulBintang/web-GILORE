@@ -1,0 +1,346 @@
+    /* ------------------------------------------------ */
+    /* ------------- ATURAN DASAR/DESKTOP ------------- */
+    /* ------------------------------------------------ */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Garamond', serif;
+      background-color: #f7f3e9;
+      color: #2f2b25;
+      overflow-x: hidden;
+    }
+    
+    section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1, h2 {
+      display: inline-block;
+      opacity: 1;
+      font-family: 'Garamond', serif;
+      word-spacing: 0.3em;
+    }
+
+    h1 {
+      font-size: 8vw;
+      color: #3a3225;
+      margin: 0;
+      letter-spacing: 0.05em;
+      text-align: center;
+      line-height: 1.2;
+      text-transform: none;
+    }
+
+    h2 {
+      font-size: 4vw;
+      color: #6a604f;
+      margin-top: 10px;
+      font-weight: normal;
+      letter-spacing: 0.1em;
+    }
+	
+	/*
+    .char, .char-naga, .char-heavenly, .char-archon, .char-war, .char-cataclysm, .char-catac {
+      display: inline-block;
+      margin-right: 0;
+      transition: transform 0.3s linear, opacity 0.3s linear;
+    }
+
+    .char-naga, .char-heavenly, .char-archon, .char-war, .char-cataclysm, .char-catac {
+      opacity: 0;
+      transform: translateY(100px) rotate(15deg);
+    }
+
+    .char-naga.visible, .char-heavenly.visible, .char-archon.visible, .char-war.visible, .char-cataclysm.visible, .char-catac.visible {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg);
+    } */
+	
+	.char-scatter {
+    display: inline-block;
+    opacity: 1;
+    transition: transform 0.3s linear, opacity 0.3s linear;
+	z-index: 10;
+	}
+	
+	/* GANTI: section h1 (Tambahkan :not(#title1):not(#title2)) */
+section h1:not(#title1):not(#title2) {
+    position: relative; 
+    overflow: hidden; 
+    color: transparent; 
+    transition: color 0.1s linear 0.5s;
+}
+
+/* GANTI: section h1::before */
+section h1:not(#title1):not(#title2)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #3a3225;
+    z-index: 1;
+    transition: width 1s ease-out;
+}
+
+/* GANTI: section h1.revealed */
+section h1:not(#title1):not(#title2).revealed {
+    color: #3a3225;
+}
+
+/* GANTI: section h1.revealed::before */
+section h1:not(#title1):not(#title2).revealed::before {
+    width: 100%;
+    transition: width 1s ease-out, transform 0.5s linear 1s;
+    transform: translateX(100%);
+}
+
+
+/* ------------------------------------------------ */
+/* ------------- KONTEN & VISIBILITY ------------- */
+/* ------------------------------------------------ */
+.content {
+  max-width: 900px;
+  margin: 80px auto;
+  text-align: justify;
+  line-height: 1.9;
+  font-size: 1.5em;
+  padding: 0 40px;
+  font-family: 'Noto Serif', serif;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+#titleArchon, #titleWar, #titleCataclysm {
+  text-transform: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.4;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+    /* ------------------------------------------------ */
+    /* ------------- NAVIGASI DESKTOP (> 1024px) ------------- */
+    /* ------------------------------------------------ */
+
+    #music-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: 'Garamond', serif;
+      font-size: 1em;
+      cursor: pointer;
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+
+    #music-toggle:hover {
+      background-color: rgba(50,50,50,0.8);
+    }
+    
+    #sidebar-nav {
+      position: fixed; /* Membuat menu tetap di tempat saat di-scroll */
+      top: 50%; /* Posisikan vertikal di tengah */
+      left: 20px; /* Jarak dari tepi kiri */
+      transform: translateY(-50%); /* Penyesuaian agar benar-benar di tengah */
+      z-index: 999; 
+      background-color: rgba(255, 255, 255, 0.2); 
+      padding: 10px 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+    }
+    
+    /* Tombol Hamburger disembunyikan di Desktop */
+    #nav-toggle {
+        display: none; 
+    }
+    
+    /* Daftar Menu SELALU terlihat di Desktop */
+    #nav-menu {
+        display: block; /* Pastikan terlihat */
+        position: static; /* Hapus posisi absolut yang dipakai mobile */
+        width: auto;
+        background: none;
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        list-style: none; /* Hilangkan bullet point */
+        margin: 0;
+    }
+
+    #sidebar-nav li {
+      margin: 10px 0;
+    }
+
+    #sidebar-nav a {
+      text-decoration: none;
+      color: #3a3225;
+      font-size: 1em;
+      font-weight: bold;
+      font-family: 'Garamond', serif;
+      transition: color 0.3s, border-bottom 0.3s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
+    }
+
+    #sidebar-nav a:hover {
+      color: #b8860b;
+      border-bottom: 2px solid #b8860b;
+    }
+    
+    #sidebar-nav a.active {
+      color: #8b0000;
+      border-bottom: 3px solid #8b0000;
+      transform: scale(1.1);
+    }
+    
+    /* ------------------------------------------------ */
+    /* ------------- MEDIA QUERY MOBILE (<= 1024px) ------------- */
+    /* ------------------------------------------------ */
+    @media (max-width: 1024px) {
+        
+        /* 1. Reset Posisi Sidebar Nav Container */
+        #sidebar-nav {
+            position: fixed; /* Biarkan static di sini */
+            left: auto;
+            right: 20px;
+            top: 20px;
+            transform: none;
+            background: none;
+            padding: 0;
+            box-shadow: none;
+            backdrop-filter: none;
+            width: auto;
+        }
+        
+        /* 2. Tombol Musik (Posisikan di samping Tombol Menu) */
+        #music-toggle {
+            right: 90px;
+        }
+
+        /* 3. Tombol Hamburger: Tampilkan & Styling Seragam */
+        #nav-toggle {
+            display: block;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: none;
+        }
+
+        /* 4. Daftar Menu (#nav-menu): Sembunyikan Default & Styling Dropdown */
+        #nav-menu {
+			display: block;
+			visibility: hidden;
+			max-height: 0;
+			opacity: 0;
+			overflow: hidden;
+			transition: max-height 0.4s ease-out, opacity 0.3s ease-in, visibility 0.4s;
+        
+			position: absolute;
+			right: 0;
+			top: 80px; 
+			width: 200px;
+			background-color: #f7f3e9; 
+			border: 1px solid #ccc;
+			border-radius: 8px;
+			padding: 0;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			z-index: 999;
+        }
+		#nav-menu ul {
+			padding: 10px;
+		}
+        
+        /* 5. Menu Terbuka: Tampilkan saat class 'open' ditambahkan oleh JS */
+        #nav-menu.open {
+			visibility: visible;
+			max-height: 500px;
+			opacity: 1;
+        }
+        
+        /* Styling link di mobile */
+        #nav-menu li {
+            margin: 10px 0;
+        }
+        #nav-menu a {
+            display: block;
+            padding: 5px 10px;
+        }
+        
+        /* ------------------------------------------------ */
+        /* ------------- PERBAIKAN SPASI & FONT (<= 768px) ------------- */
+        /* ------------------------------------------------ */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+                line-height: 1.1;
+                letter-spacing: 0.05em; 
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                line-height: 1.3;
+                letter-spacing: 0.05em; 
+            }
+            
+            .content {
+                text-align: left; /* Perbaikan Spasi Berantakan */
+                font-size: 1.1em;
+                line-height: 1.7;
+                padding: 0 20px;
+            }
+        }
+    }
+	
+	/* Styling untuk Footer dan Disclaimer */
+footer {
+    padding: 30px 20px;
+    background-color: #e9e3d8; /* Warna sedikit lebih gelap dari background body */
+    text-align: center;
+    font-size: 0.9em;
+    color: #6a604f;
+    line-height: 1.5;
+    margin-top: 50px; /* Jarak dari konten di atasnya */
+}
+
+.disclaimer-text {
+    max-width: 800px;
+    margin: 0 auto 10px auto; /* Memastikan disclaimer di tengah */
+}
+
+.copyright-text {
+    font-weight: normal;
+    margin: 5px 0 0 0;
+}
